@@ -12,4 +12,17 @@ public class Mine : MineBase
     {
         
     }
+    
+
+    public override void InitMine()
+    {
+        base.InitMine();
+    }
+
+    public override void ResetMine()
+    {
+        base.ResetMine();
+    }
+    
+    
 }

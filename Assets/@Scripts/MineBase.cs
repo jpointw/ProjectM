@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class MineBase : MonoBehaviour
 {
+    public MineType mineType;
+    
     protected bool isConsumed = false;
     protected bool isTargeted = false;
     
@@ -26,4 +28,20 @@ public class MineBase : MonoBehaviour
     {
         isTargeted = istargeted;
     }
+    
+    public virtual void ResetMine()
+    {
+    }
+
+    public virtual void InitMine()
+    {
+    }
+}
+
+public enum MineType
+{
+    GOLD,
+    COAL,
+    IRON,
+    DIAMOND
 }
