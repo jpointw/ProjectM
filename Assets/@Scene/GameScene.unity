@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &108972304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -444,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &203112048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -935,6 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &409256968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1143,6 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &506381624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1264,6 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &536712000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1483,24 +1488,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4333450b7c4bfe549918d66fa5bd87a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mines:
-  - {fileID: 827248964}
-  - {fileID: 1045748588}
-  - {fileID: 1846651779}
-  - {fileID: 108972303}
-  - {fileID: 1217249028}
-  - {fileID: 939814653}
-  - {fileID: 1267949780}
-  - {fileID: 506381623}
-  - {fileID: 2104565328}
-  - {fileID: 409256967}
-  - {fileID: 536711999}
-  - {fileID: 203112047}
-  - {fileID: 1814406456}
-  - {fileID: 2025840243}
-  - {fileID: 1921950222}
-  - {fileID: 2075990299}
-  Astar: {fileID: 0}
+  plane: {fileID: 397770049}
+  goldMinePrefab: {fileID: 0}
+  coalMinePrefab: {fileID: 0}
+  ironMinePrefab: {fileID: 0}
+  diamondMinePrefab: {fileID: 0}
+  activeMines: []
 --- !u!1 &804378465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,17 +1602,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 804378465}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &827248964 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7924309963812148304, guid: 1b3eb52095ead1e428df706602e7b19d, type: 3}
-  m_PrefabInstance: {fileID: 315469990875321197}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &882603946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,6 +1646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &939814654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1876,6 +1859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &1045748589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2290,6 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!1 &1267949779
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &1267949781
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3183,6 +3169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!1 &1846651778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,6 +3202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &1846651780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3457,6 +3445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &1921950223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3578,6 +3567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &2025840244
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3699,6 +3689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!65 &2075990300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3909,6 +3900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c10a942119d364dbede2a0afea4659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineType: 0
 --- !u!114 &29050576673827375
 MonoBehaviour:
   m_ObjectHideFlags: 0
