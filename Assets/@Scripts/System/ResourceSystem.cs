@@ -7,8 +7,13 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
 
+
+/// <summary>
+/// 프리펩 단계에서 쓸
+/// </summary>
 public class ResourceSystem
 {
+#if UsingAddressable
 	Dictionary<string, UnityEngine.Object> _resources = new Dictionary<string, UnityEngine.Object>();
 
 	Dictionary<string, AsyncOperationHandle> _handles = new Dictionary<string, AsyncOperationHandle>();
@@ -76,4 +81,5 @@ public class ResourceSystem
 	{
 		Object.Destroy(go, seconds);
 	}
+#endif
 }

@@ -24,5 +24,5 @@ public class Define
         TitleScene,
     }
 
-    public const int MININGTOOL_COUNT = 0;
+    public const int MININGTOOL_COUNT = 9;
 }
