@@ -6,12 +6,12 @@ public class MinerController : MonoBehaviour
     private MineBase _targetMine;
 
     private FollowerEntity _followerEntity;
-    
+
+    public bool IsMining { get; } = false;
+
     void Start()
     {
         _followerEntity = GetComponent<FollowerEntity>();
-        _targetMine = MineSystem.Instance.GetClosestMine(this.transform.position);
-        StartMining();
     }
     void Update()
     {
@@ -27,7 +27,6 @@ public class MinerController : MonoBehaviour
 
     private void StartMining()
     {
-        Debug.LogError($"{gameObject.name} is starting mining");
         _targetMine = MineSystem.Instance.GetClosestMine(transform.position);
         SetTargetMine((Mine)_targetMine);
     }
@@ -36,6 +35,5 @@ public class MinerController : MonoBehaviour
         _targetMine = mine;
         _followerEntity.destination = mine.transform.position;
         _followerEntity.SearchPath();
-        Debug.LogError($"{mine.gameObject.name} is moving to the target mine");
     }
 }

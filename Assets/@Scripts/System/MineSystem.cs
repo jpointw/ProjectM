@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
+using static Define;
+
 
 public class MineSystem : SingletonMonoBase<MineSystem>
 {
@@ -15,39 +19,67 @@ public class MineSystem : SingletonMonoBase<MineSystem>
     public List<MineBase> activeMines;
 
     private Dictionary<MineType, ObjectPool<MineBase>> minePools;
+    
+    public const int MaxMineAmount = 20;
 
     void Start()
     {
         minePools = new Dictionary<MineType, ObjectPool<MineBase>>()
         {
-            { MineType.GOLD, CreateMinePool(goldMinePrefab, 5, 10) },
-            { MineType.COAL, CreateMinePool(coalMinePrefab, 5, 10) },
-            { MineType.IRON, CreateMinePool(ironMinePrefab, 5, 10) },
-            { MineType.DIAMOND, CreateMinePool(diamondMinePrefab, 5, 10) }
+            { MineType.Gold, CreateMinePool(goldMinePrefab, 5, 10) },
+            { MineType.Coal, CreateMinePool(coalMinePrefab, 5, 10) },
+            { MineType.Iron, CreateMinePool(ironMinePrefab, 5, 10) },
+            { MineType.Diamond, CreateMinePool(diamondMinePrefab, 5, 10) }
         };
+
+        for (int i = 0; i < MaxMineAmount; i++)
+        {
+            RequestNewMine(plane.transform.position, 5);
+        }
+        
+        MonitorMinesAsync().Forget();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            RequestNewMine(plane.transform.position, 4);
+            RequestNewMine(plane.transform.position, 5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            activeMines[Random.Range(0, activeMines.Count)].MineConsumed(10f);
+        }
+    }
+    
+    private async UniTaskVoid MonitorMinesAsync(float delay = 5f)
+    {
+        while (true)
+        {
+            if (activeMines.Count < MaxMineAmount)
+            {
+                RequestNewMine(plane.transform.position, 5); 
+            }
+            
+            await UniTask.Delay(TimeSpan.FromSeconds(delay));
         }
     }
 
     private ObjectPool<MineBase> CreateMinePool(MineBase prefab, int defaultCapacity, int maxSize)
     {
+        
         return new ObjectPool<MineBase>(
             createFunc: () => Instantiate(prefab),
             actionOnGet: mine => {
-                mine.gameObject.SetActive(true);
-                Debug.LogError("Created Mine");
                 activeMines.Add(mine);
+                mine.gameObject.SetActive(true);
             },
             actionOnRelease: mine => {
-                mine.ResetMine();
-                mine.gameObject.SetActive(false);
                 activeMines.Remove(mine);
+                mine.ResetMine();
+                
+                mine.gameObject.SetActive(false);
             },
             actionOnDestroy: mine => Destroy(mine.gameObject),
             defaultCapacity: defaultCapacity,
@@ -62,10 +94,10 @@ public class MineSystem : SingletonMonoBase<MineSystem>
 
         newMine = randomValue switch
         {
-            < 40 => minePools[MineType.GOLD].Get(),
-            < 70 => minePools[MineType.COAL].Get(),
-            < 90 => minePools[MineType.IRON].Get(),
-            _ => minePools[MineType.DIAMOND].Get()
+            < 40 => minePools[MineType.Gold].Get(),
+            < 70 => minePools[MineType.Coal].Get(),
+            < 90 => minePools[MineType.Iron].Get(),
+            _ => minePools[MineType.Diamond].Get()
         };
 
         if (newMine != null)
@@ -88,7 +120,6 @@ public class MineSystem : SingletonMonoBase<MineSystem>
 
             if (!validPosition)
             {
-                Debug.LogWarning("Failed to find valid position for the new mine after multiple attempts.");
                 minePools[newMine.mineType].Release(newMine);
                 newMine = null;
             }

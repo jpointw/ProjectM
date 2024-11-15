@@ -9,10 +9,8 @@ public abstract class SingletonMonoBase<T> : MonoBehaviour where T : Component
         {
             if (_instance == null)
             {
-                // 씬 전체에서 탐색
                 _instance = FindAnyObjectByType<T>();
 
-                // 그래도 없는 경우
                 if (_instance == null)
                 {
                     GameObject container = new GameObject($"Singleton {typeof(T)}");

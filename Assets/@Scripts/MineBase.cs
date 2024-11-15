@@ -1,5 +1,7 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Define;
 
 public class MineBase : MonoBehaviour
 {
@@ -9,19 +11,16 @@ public class MineBase : MonoBehaviour
     protected bool isTargeted = false;
     
     
-    protected float mineAmount = 0;
+    protected float mineAmount = 100;
+    
+    protected MineAnimation mineAnimation;
 
     public bool IsConsumed => isConsumed;
     public bool IsTargeted => isTargeted;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Start()
     {
-        
+        mineAnimation = GetComponent<MineAnimation>();
     }
 
     public void MineTargeted(bool istargeted)
@@ -29,19 +28,26 @@ public class MineBase : MonoBehaviour
         isTargeted = istargeted;
     }
     
+    public void MineConsumed(float amount)
+    {
+        mineAnimation.ShakeOnce();
+        mineAmount -= amount;
+        if (mineAmount <= 0)
+        {
+            mineAmount = 0;
+            MineSystem.Instance.ReturnMineToPool(this);
+        }
+    }
+    
     public virtual void ResetMine()
     {
+        
     }
 
     public virtual void InitMine()
     {
+        
     }
-}
-
-public enum MineType
-{
-    GOLD,
-    COAL,
-    IRON,
-    DIAMOND
+    
+    
 }

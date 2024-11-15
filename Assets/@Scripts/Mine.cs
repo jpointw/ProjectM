@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class Mine : MineBase
 {
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame

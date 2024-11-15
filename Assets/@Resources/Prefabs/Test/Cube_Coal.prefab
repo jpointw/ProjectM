@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3783955736000499254}
   - component: {fileID: 8341827973182256253}
   - component: {fileID: 1198461995905092553}
+  - component: {fileID: 3711851328647969216}
   m_Layer: 6
   m_Name: Cube_Coal
   m_TagString: Untagged
@@ -122,3 +123,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineType: 1
+--- !u!114 &3711851328647969216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274478339473544425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c30b158c2fc0f64fad367786e85e83f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.5
+  shakeStrength: 0.1
+  shakeVibrato: 10
+  shakeRandomness: 90
