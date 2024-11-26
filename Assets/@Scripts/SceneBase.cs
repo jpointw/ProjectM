@@ -21,14 +21,14 @@ public class BaseScene : MonoBehaviour
         _init = true;
         GameSystems.Instance.Init();
 
-        GameObject go = GameObject.Find("EventSystem");
-        if (go == null)
-        {
-            GameSystems.Resource.Instantiate("EventSystem", null, (go) =>
-            {
-                go.name = "@EventSystem";
-            });
-        }
+        // GameObject go = GameObject.Find("EventSystem");
+        // if (go == null)
+        // {
+        //     GameSystems.Resource.Instantiate("EventSystem", null, (go) =>
+        //     {
+        //         go.name = "@EventSystem";
+        //     });
+        // }
 
         return true;
     }
