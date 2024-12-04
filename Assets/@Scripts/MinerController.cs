@@ -22,10 +22,10 @@ public class MinerController : MonoBehaviour
 
     public void Init()
     {
-        
+        _followerEntity ??= GetComponent<FollowerEntity>();
     }
 
-    private void StartMining()
+    public void StartMining()
     {
         _targetMine = MineSystem.Instance.GetClosestMine(transform.position);
         SetTargetMine((Mine)_targetMine);

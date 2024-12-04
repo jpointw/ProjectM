@@ -49,11 +49,11 @@ public class MineSystem : SingletonMonoBase<MineSystem>
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            activeMines[Random.Range(0, activeMines.Count)].MineConsumed(10f);
+            activeMines[Random.Range(0, activeMines.Count)].MineConsumed(100f);
         }
     }
     
-    private async UniTaskVoid MonitorMinesAsync(float delay = 5f)
+    private async UniTaskVoid MonitorMinesAsync(float delay = 3f)
     {
         while (true)
         {

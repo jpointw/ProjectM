@@ -12,6 +12,7 @@ public class Define
     
     public enum MiningToolType
     {
+        Hand,
         Pickaxe,
         Drill,
         Laser,
@@ -25,4 +26,6 @@ public class Define
     }
 
     public const int MININGTOOL_COUNT = 9;
+    public const int MINETYPE_COUNT = (int)MineType.Diamond + 1;
+    public const int MAX_MINER_COUNT = 10;
 }

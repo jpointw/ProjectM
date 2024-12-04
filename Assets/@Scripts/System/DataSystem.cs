@@ -2,29 +2,21 @@ using System;
 using UnityEngine;
 using static Define;
 
-[Serializable]
-public class GameData
-{
-    public int Coin;
-    public int Gem;
-    
-    public int[] MiningToolLevel = new int[MININGTOOL_COUNT];
-    public int[] MiningToolExp = new int[MININGTOOL_COUNT];
-
-    public int MinerCount = 0;
-    
-    public int CurrentMiningToolID;
-    
-    public bool BGMOn = true;
-    public bool EffectSoundOn = true;
-}
-
 public class DataSystem
 {
     GameData _gameData = new GameData();
-    public GameData SaveData { get { return _gameData; } set { _gameData = value; } }
+    public GameData SaveData { get { return _gameData; } private set { _gameData = value; } }
 
     const string SAVE_KEY = "GameData";
+    
+    
+    /// <summary>
+    /// DataChange Detect
+    /// </summary>
+    public Action<int> OnCoinUpdated;
+    public Action<int> OnMinerCountUpdated;
+    public Action<bool> OnBGMStateChanged;
+    public Action<int, int> OnMineValueUpdated;
 
     public void Init()
     {
@@ -49,4 +41,33 @@ public class DataSystem
         Debug.Log("No saved game data found. Using default values.");
         return false;
     }
+    
+    public void UpdateCoin(int value)
+    {
+        _gameData.Coin = value;
+        SaveGameData();
+        OnCoinUpdated?.Invoke(value);
+    }
+
+    public void UpdateCurrentMinerCount(int value)
+    {
+        _gameData.MinerCount = value;
+        SaveGameData();
+        OnMinerCountUpdated?.Invoke(value);
+    }
+
+    public void UpdateBGMState(bool state)
+    {
+        _gameData.BGMOn = state;
+        SaveGameData();
+        OnBGMStateChanged?.Invoke(state);
+    }
+    public void UpdateMineValue(int mineIndex, int value)
+    {
+        _gameData.Mine = value;
+        SaveGameData();
+        OnMineValueUpdated?.Invoke(mineIndex, value);
+    }
+    
+    
 }
