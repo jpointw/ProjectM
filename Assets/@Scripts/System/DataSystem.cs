@@ -41,17 +41,30 @@ public class DataSystem
         Debug.Log("No saved game data found. Using default values.");
         return false;
     }
+    public void UpdateLevel(int value)
+    {
+        _gameData.coin = value;
+        SaveGameData();
+        OnCoinUpdated?.Invoke(value);
+    }
+    
+    public void UpdateExp(int value)
+    {
+        _gameData.coin = value;
+        SaveGameData();
+        OnCoinUpdated?.Invoke(value);
+    }
     
     public void UpdateCoin(int value)
     {
-        _gameData.Coin = value;
+        _gameData.coin = value;
         SaveGameData();
         OnCoinUpdated?.Invoke(value);
     }
 
     public void UpdateCurrentMinerCount(int value)
     {
-        _gameData.MinerCount = value;
+        _gameData.minerCount = value;
         SaveGameData();
         OnMinerCountUpdated?.Invoke(value);
     }
@@ -64,7 +77,7 @@ public class DataSystem
     }
     public void UpdateMineValue(int mineIndex, int value)
     {
-        _gameData.Mine = value;
+        _gameData.mine = value;
         SaveGameData();
         OnMineValueUpdated?.Invoke(mineIndex, value);
     }

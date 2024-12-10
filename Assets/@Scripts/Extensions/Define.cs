@@ -14,8 +14,8 @@ public class Define
     {
         Hand,
         Pickaxe,
-        Drill,
-        Laser,
+        Bomb,
+        Turret,
     }
 
     public enum SceneType

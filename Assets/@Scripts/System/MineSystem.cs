@@ -7,8 +7,10 @@ using Random = UnityEngine.Random;
 using static Define;
 
 
-public class MineSystem : SingletonMonoBase<MineSystem>
+public class MineSystem : MonoBehaviour
 {
+    public static MineSystem Instance { get; private set; }
+    
     public GameObject plane;
 
     public MineBase goldMinePrefab;
@@ -21,6 +23,14 @@ public class MineSystem : SingletonMonoBase<MineSystem>
     private Dictionary<MineType, ObjectPool<MineBase>> minePools;
     
     public const int MaxMineAmount = 20;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
@@ -40,18 +50,18 @@ public class MineSystem : SingletonMonoBase<MineSystem>
         MonitorMinesAsync().Forget();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            RequestNewMine(plane.transform.position, 5);
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            activeMines[Random.Range(0, activeMines.Count)].MineConsumed(100f);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.A))
+    //     {
+    //         RequestNewMine(plane.transform.position, 5);
+    //     }
+    //
+    //     if (Input.GetKeyDown(KeyCode.S))
+    //     {
+    //         activeMines[Random.Range(0, activeMines.Count)].MineConsumed(100f);
+    //     }
+    // }
     
     private async UniTaskVoid MonitorMinesAsync(float delay = 3f)
     {
@@ -73,12 +83,12 @@ public class MineSystem : SingletonMonoBase<MineSystem>
             createFunc: () => Instantiate(prefab),
             actionOnGet: mine => {
                 activeMines.Add(mine);
+                mine.InitMine();
                 mine.gameObject.SetActive(true);
             },
             actionOnRelease: mine => {
                 activeMines.Remove(mine);
                 mine.ResetMine();
-                
                 mine.gameObject.SetActive(false);
             },
             actionOnDestroy: mine => Destroy(mine.gameObject),

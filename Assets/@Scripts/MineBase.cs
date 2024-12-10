@@ -7,6 +7,8 @@ public class MineBase : MonoBehaviour
 {
     public MineType mineType;
     
+    public MinerController minerController;
+    
     protected bool isConsumed = false;
     protected bool isTargeted = false;
     
@@ -35,6 +37,7 @@ public class MineBase : MonoBehaviour
         if (mineAmount <= 0)
         {
             mineAmount = 0;
+            isConsumed = true;
             MineSystem.Instance.ReturnMineToPool(this);
         }
     }
@@ -46,7 +49,9 @@ public class MineBase : MonoBehaviour
 
     public virtual void InitMine()
     {
-        
+        isConsumed = false;
+        isTargeted = false;
+        mineAmount = 100;
     }
     
     
