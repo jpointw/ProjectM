@@ -13,17 +13,17 @@ public class SceneSystem
         {
             if (_curSceneType != Define.SceneType.Unknown)
                 return _curSceneType;
-            return CurrentScene.SceneType;
+            return current.SceneType;
         }
         set {  _curSceneType = value; }
     }
 
-    public BaseScene CurrentScene { get { return GameObject.FindObjectOfType<BaseScene>(); } }
+    public SceneBase current { get { return GameObject.FindObjectOfType<SceneBase>(); } }
 
     public void ChangeScene(Define.SceneType type)
     {
-        Debug.Log(CurrentScene);
-        CurrentScene.Clear();
+        Debug.Log(current);
+        current.Clear();
 
         _curSceneType = type;
         SceneManager.LoadScene(GetSceneName(type));

@@ -1,16 +1,23 @@
+using System;
 using UnityEngine;
 
 public class EnemySystem : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public EnemyController[] enemies;
+
+    public Action OnKillItemUsed;
+
+
+    private void Start()
     {
-        
+        OnKillItemUsed += KillAllEnemies;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void KillAllEnemies()
     {
-        
+        foreach (var enemy in enemies)
+        {
+            enemy.KillMyself();
+        }
     }
 }

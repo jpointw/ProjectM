@@ -27,6 +27,15 @@ public class GameSystems : SingletonMonoBase<GameSystems>
     
     public void Init()
     {
-        
+        _dataSystem.Init();
+    }
+
+    public bool SetIngameSystems()
+    {
+        _mineSystem = FindFirstObjectByType<MineSystem>();
+        _mineSystem.Init();
+        _minerSystem = FindFirstObjectByType<MinerSystem>();
+        _minerSystem.Init();
+        return true;
     }
 }

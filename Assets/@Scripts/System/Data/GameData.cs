@@ -5,9 +5,10 @@ using static Define;
 [Serializable]
 public class GameData
 {
-    public int coin;
+    public int gold;
     public int mine = 0;
-    public int gem;
+    public int greenGem;
+    public int redGem;
 
     public int level;
     public int exp;

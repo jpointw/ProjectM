@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
@@ -41,6 +42,7 @@ public struct MiningToolInfoData
     public int itemId;
     public MiningToolType miningToolType;
     public int stopDistance;
+    public int Damage;
     public GameObject miningToolPrefab;
     public Sprite miningToolSprite;
 }

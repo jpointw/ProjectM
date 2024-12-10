@@ -32,7 +32,25 @@ public class MineSystem : MonoBehaviour
         }
     }
 
-    void Start()
+    // void Start()
+    // {
+    //     minePools = new Dictionary<MineType, ObjectPool<MineBase>>()
+    //     {
+    //         { MineType.Gold, CreateMinePool(goldMinePrefab, 5, 10) },
+    //         { MineType.Coal, CreateMinePool(coalMinePrefab, 5, 10) },
+    //         { MineType.Iron, CreateMinePool(ironMinePrefab, 5, 10) },
+    //         { MineType.Diamond, CreateMinePool(diamondMinePrefab, 5, 10) }
+    //     };
+    //
+    //     for (int i = 0; i < MaxMineAmount; i++)
+    //     {
+    //         RequestNewMine(plane.transform.position, 5);
+    //     }
+    //     
+    //     MonitorMinesAsync().Forget();
+    // }
+
+    public void Init()
     {
         minePools = new Dictionary<MineType, ObjectPool<MineBase>>()
         {

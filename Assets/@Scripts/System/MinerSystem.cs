@@ -27,6 +27,7 @@ public class MinerSystem : MonoBehaviour
     public void Init()
     {
         HandleEquipmentChanged((MiningToolType)GameSystems.Data.SaveData.currentMiningToolID);
+        InstantiateMiners(GameSystems.Data.SaveData.minerCount);
         HandleStatusChanged(0, 0);
     }
 
@@ -43,6 +44,15 @@ public class MinerSystem : MonoBehaviour
         foreach (MinerController minerController in miners)
         {
             minerController.ChangeMinerStatus(damange, speed);
+        }
+    }
+
+    public void InstantiateMiners(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            MinerController miner = Instantiate(minerControllerObj);
+            miners.Add(miner);
         }
     }
 
