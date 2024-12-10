@@ -25,7 +25,7 @@ public class Define
         TitleScene,
     }
 
-    public const int MININGTOOL_COUNT = 9;
+    public const int MININGTOOL_COUNT = (int)MiningToolType.Turret + 1;
     public const int MINETYPE_COUNT = (int)MineType.Diamond + 1;
     public const int MAX_MINER_COUNT = 10;
 }
