@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 
-public class BaseScene : MonoBehaviour
+public class SceneBase : MonoBehaviour
 {
     public SceneType SceneType = SceneType.Unknown;
     protected bool _init = false;
