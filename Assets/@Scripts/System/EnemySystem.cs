@@ -20,4 +20,9 @@ public class EnemySystem : MonoBehaviour
             enemy.KillMyself();
         }
     }
+
+    public void Init()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 
 public class GameSystems : SingletonMonoBase<GameSystems>
@@ -14,8 +15,9 @@ public class GameSystems : SingletonMonoBase<GameSystems>
     /// <summary>
     /// InGameSystems
     /// </summary>
-    MineSystem _mineSystem = null;
+    MineSystem  _mineSystem  = null;
     MinerSystem _minerSystem = null;
+    EnemySystem _enemySystem = null;
 
     public static DataSystem Data => Instance?._dataSystem;
     
@@ -24,6 +26,10 @@ public class GameSystems : SingletonMonoBase<GameSystems>
     #endif
     
     public static SceneSystem Scene => Instance?._sceneSystem;
+    
+    public static MineSystem  MineSystem   =>  Instance?._mineSystem ;
+    public static MinerSystem MinerSystem =>  Instance?._minerSystem;
+    public static EnemySystem EnemySystem =>  Instance?._enemySystem;
     
     public void Init()
     {
@@ -36,6 +42,8 @@ public class GameSystems : SingletonMonoBase<GameSystems>
         _mineSystem.Init();
         _minerSystem = FindFirstObjectByType<MinerSystem>();
         _minerSystem.Init();
+        _enemySystem = FindFirstObjectByType<EnemySystem>();
+        _enemySystem.Init();
         return true;
     }
 }

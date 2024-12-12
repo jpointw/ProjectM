@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopUI : MonoBehaviour,IUIView
+public class ShopUI : BaseUI
 {
     public class ShopDetailInfo
     {
@@ -155,17 +155,16 @@ public class ShopUI : MonoBehaviour,IUIView
         GameSystems.Data.UpdateGold(goldCost);
     }
 
-    public bool IsOpen { get; set; }
 
-    public void Open()
+    public override void OpenUI()
     {
-        IsOpen = true;
+        base.OpenUI();
         shopDetailPopup.SetActive(false);
     }
 
-    public void Close()
+    public override void CloseUI()
     {
-        IsOpen = true;
+        base.CloseUI();
         shopDetailPopup.SetActive(false);
     }
 }

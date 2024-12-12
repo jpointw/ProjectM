@@ -17,6 +17,7 @@ public class DataSystem
     public Action<int> OnGreenGemUpdated;
     public Action<int> OnRedGemUpdated;
     public Action<int,int> OnItemAmountUpdated;
+    public Action<int,int> OnItemUpdated;
     public Action<int> OnMinerCountUpdated;
     public Action<bool> OnBGMStateChanged;
     public Action<int, int> OnMineValueUpdated;
@@ -46,44 +47,52 @@ public class DataSystem
     }
     public void UpdateLevel(int value)
     {
-        _gameData.gold += value;
+        _gameData.level += value;
         SaveGameData();
-        OnGoldUpdated?.Invoke(value);
+        OnGoldUpdated?.Invoke(_gameData.level);
     }
     
     public void UpdateExp(int value)
     {
-        _gameData.gold += value;
+        _gameData.exp += value;
         SaveGameData();
-        OnGoldUpdated?.Invoke(value);
+        OnGoldUpdated?.Invoke(_gameData.exp);
     }
     
     public void UpdateGold(int value)
     {
         _gameData.gold += value;
         SaveGameData();
-        OnGoldUpdated?.Invoke(value);
+        OnGoldUpdated?.Invoke(_gameData.gold);
     }
     
     public void UpdateGreenGem(int value)
     {
         _gameData.greenGem += value;
         SaveGameData();
-        OnGreenGemUpdated?.Invoke(value);
+        OnGreenGemUpdated?.Invoke(_gameData.greenGem);
     }
     
     public void UpdateRedGem(int value)
     {
         _gameData.redGem += value;
         SaveGameData();
-        OnRedGemUpdated?.Invoke(value);
+        OnRedGemUpdated?.Invoke(_gameData.redGem);
     }
 
-    public void UpdateItemAmout(int itemId, int value)
+    public int UpdateItemAmout(int itemId, int value)
     {
         _gameData.itemAmount[itemId] += value;
         SaveGameData();
-        OnItemAmountUpdated?.Invoke(itemId, value);
+        OnItemAmountUpdated?.Invoke(itemId, _gameData.itemAmount[itemId]);
+        return _gameData.itemAmount[itemId];
+    }
+
+    public int UpdateMiningTool(int itemId, int value)
+    {
+        _gameData.miningToolLevel[itemId] += value;
+        OnItemUpdated?.Invoke(itemId, _gameData.miningToolLevel[itemId]);
+        return 0;
     }
     
     
@@ -91,77 +100,19 @@ public class DataSystem
     {
         _gameData.minerCount += value;
         SaveGameData();
-        OnMinerCountUpdated?.Invoke(value);
+        OnMinerCountUpdated?.Invoke(_gameData.minerCount);
     }
     
     public void UpdateBGMState(bool state)
     {
         _gameData.BGMOn = state;
         SaveGameData();
-        OnBGMStateChanged?.Invoke(state);
+        OnBGMStateChanged?.Invoke(_gameData.BGMOn);
     }
     public void UpdateMineValue(int mineIndex, int value)
     {
         _gameData.mine += value;
         SaveGameData();
-        OnMineValueUpdated?.Invoke(mineIndex, value);
+        OnMineValueUpdated?.Invoke(mineIndex, _gameData.mine);
     }
-    //
-    // public int UpdateLevel(int value)
-    // {
-    //     _gameData.coin = value;
-    //     SaveGameData();
-    //     OnCoinUpdated?.Invoke(value);
-    // }
-    //
-    // public int UpdateExp(int value)
-    // {
-    //     _gameData.coin = value;
-    //     SaveGameData();
-    //     OnCoinUpdated?.Invoke(value);
-    // }
-    //
-    // public int UpdateCoin(int value)
-    // {
-    //     _gameData.coin = value;
-    //     SaveGameData();
-    //     OnCoinUpdated?.Invoke(value);
-    // }
-    //
-    // public int UpdateGreenGem(int value)
-    // {
-    //     _gameData.greenGem = value;
-    //     SaveGameData();
-    //     OnGreenGemUpdated?.Invoke(value);
-    // }
-    //
-    // public int UpdateRedGem(int value)
-    // {
-    //     _gameData.redGem = value;
-    //     SaveGameData();
-    //     OnRedGemUpdated?.Invoke(value);
-    // }
-    //
-    //
-    // public int UpdateCurrentMinerCount(int value)
-    // {
-    //     _gameData.minerCount = value;
-    //     SaveGameData();
-    //     OnMinerCountUpdated?.Invoke(value);
-    // }
-    //
-    // public bool UpdateBGMState(bool state)
-    // {
-    //     _gameData.BGMOn = state;
-    //     SaveGameData();
-    //     OnBGMStateChanged?.Invoke(state);
-    // }
-    // public (int,int) UpdateMineValue(int mineIndex, int value)
-    // {
-    //     _gameData.mine = value;
-    //     SaveGameData();
-    //     OnMineValueUpdated?.Invoke(mineIndex, value);
-    // }
-    
-    
 }
