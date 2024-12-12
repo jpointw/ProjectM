@@ -18,6 +18,8 @@ public class GameSystems : SingletonMonoBase<GameSystems>
     MineSystem  _mineSystem  = null;
     MinerSystem _minerSystem = null;
     EnemySystem _enemySystem = null;
+    
+    public GameModelDatas gameModelDatas = null;
 
     public static DataSystem Data => Instance?._dataSystem;
     
