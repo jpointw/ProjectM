@@ -137,10 +137,10 @@ public class MinerController : MonoBehaviour
                 break;}
     }
 
-    public void ChangeMinerStatus(int Damage, int speed)
+    public void ChangeMinerStatus(int damage, float? speed)
     {
-        Damage = Damage;
-        _followerEntity.maxSpeed = speed;
+        Damage = damage;
+        if (speed != null) _followerEntity.maxSpeed = (float)speed;
     }
 
     private void OnDestroy()

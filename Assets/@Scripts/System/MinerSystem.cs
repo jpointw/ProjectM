@@ -16,7 +16,7 @@ public class MinerSystem : MonoBehaviour
     public Animation[] miningAnimations;
     public Action<int> OnCharacterChanged;
     public Action<MiningToolType> OnEquipmentChanged;
-    public Action<int, int> OnStatusChanged;
+    public Action<int, float> OnStatusChanged;
 
     private void Start()
     {
@@ -39,7 +39,7 @@ public class MinerSystem : MonoBehaviour
         }
     }
     
-    public void HandleStatusChanged(int damange, int speed)
+    public void HandleStatusChanged(int damange, float speed)
     {
         foreach (MinerController minerController in miners)
         {
