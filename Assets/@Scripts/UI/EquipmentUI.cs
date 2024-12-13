@@ -14,6 +14,8 @@ public class EquipmentUI : BaseUI
         public int Price;
         public Action OnPurchaseAction;
     }
+    
+    public Button closeButton;
 
     public Image categoryImage;
 
@@ -48,10 +50,12 @@ public class EquipmentUI : BaseUI
             kvp.Key.onClick.AddListener(() => ShowEquipDetailPopup(kvp.Value));
         }
 
-        foreach (var closeButton in detailPopupCloseButtons)
+        foreach (var button in detailPopupCloseButtons)
         {
-            closeButton.onClick.AddListener(CloseEquipDetailPopup);
+            button.onClick.AddListener(CloseEquipDetailPopup);
         }
+        
+        closeButton.onClick.AddListener(CloseUI);
     }
 
     public override void OpenUI()
@@ -92,7 +96,7 @@ public class EquipmentUI : BaseUI
             Damage = 20,
             Speed = 8,
             Price = 500,
-            OnPurchaseAction = () => HandleMiningToolUpgrade(1, 1, -500)
+            OnPurchaseAction = () => HandleMiningToolUpgrade(2, 1, -500)
         });
     }
 

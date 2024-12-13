@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +8,10 @@ public class ItemUI : BaseUI
 {
     public Button[] itemButtons;
     
-    public TMP_Text item1AmountText; 
-    public TMP_Text item2AmountText; 
-    public TMP_Text item3AmountText; 
+    public Button[] closeButtons;
+    
+    public TMP_Text[] itemAmountTexts; 
+    
 
 
     public Action<int> OnMiningSpeedItemUsed;
@@ -28,6 +30,25 @@ public class ItemUI : BaseUI
         itemButtons[1].onClick.AddListener(OnClickedItem2Button);
         itemButtons[2].onClick.AddListener(OnClickedItem3Button);
 
+        foreach (var closeButton in closeButtons)
+        {
+            closeButton.onClick.AddListener(CloseUI);
+        }
+    }
+
+    public override void OpenUI()
+    {
+        for (int i = 0; i < itemButtons.Length; i++)
+        {
+            itemButtons[i].interactable = GameSystems.Data.SaveData.itemAmount[i] > 0;
+            itemAmountTexts[i].text = $"x {GameSystems.Data.SaveData.itemAmount[i]}";
+        }
+        base.OpenUI();
+    }
+
+    public override void CloseUI()
+    {
+        base.CloseUI();
     }
 
 
@@ -36,29 +57,34 @@ public class ItemUI : BaseUI
         var itemAmout = GameSystems.Data.UpdateItemAmout(0, -1);
         if (itemAmout > 0)
         {
-            item2AmountText.text = itemAmout.ToString();
+            itemAmountTexts[0].text = itemAmout.ToString();
         }
         else
         {
-            item2AmountText.text = $"x {itemAmout}";
-            itemButtons[1].interactable = false;
+            itemAmountTexts[0].text = $"x {itemAmout}";
+            itemButtons[0].interactable = false;
         }
-        GameSystems.MinerSystem.OnStatusChanged.Invoke(0,0);
+
+        var damage = MinerExtensions.GetDamage();
+        var speed = MinerExtensions.GetSpped();
+        GameSystems.MinerSystem.OnStatusChanged.Invoke(damage * 2,speed);
     }
     public void OnClickedItem2Button()
     {
         var itemAmout = GameSystems.Data.UpdateItemAmout(1, -1);
         if (itemAmout > 0)
         {
-            item2AmountText.text = itemAmout.ToString();
+            itemAmountTexts[1].text = itemAmout.ToString();
         }
         else
         {
-            item2AmountText.text = $"x {itemAmout}";
+            itemAmountTexts[1].text = $"x {itemAmout}";
             itemButtons[1].interactable = false;
-
         }
-        GameSystems.MinerSystem.OnStatusChanged.Invoke(0,0);
+        
+        var damage = MinerExtensions.GetDamage();
+        var speed = MinerExtensions.GetSpped();
+        GameSystems.MinerSystem.OnStatusChanged.Invoke(damage,speed * 2);
     }
     
     public void OnClickedItem3Button()
@@ -66,12 +92,12 @@ public class ItemUI : BaseUI
         var itemAmout = GameSystems.Data.UpdateItemAmout(2, -1);
         if (itemAmout > 0)
         {
-            item2AmountText.text = itemAmout.ToString();
+            itemAmountTexts[2].text = itemAmout.ToString();
         }
         else
         {
-            item2AmountText.text = $"x {itemAmout}";
-            itemButtons[1].interactable = false;
+            itemAmountTexts[2].text = $"x {itemAmout}";
+            itemButtons[2].interactable = false;
         }
         GameSystems.EnemySystem.KillAllEnemies();
     }

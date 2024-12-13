@@ -18,6 +18,8 @@ public class ShopUI : BaseUI
     [Header("Purchase Buttons")]
     public Button[] goldPurchaseButtons;
     public Button[] itemPurchaseButtons;
+    
+    public Button closeButton;
 
     [Header("Popup Settings")]
     public GameObject shopDetailPopup;
@@ -44,10 +46,11 @@ public class ShopUI : BaseUI
             kvp.Key.onClick.AddListener(() => OpenShopDetailPopup(kvp.Value));
         }
 
-        foreach (var closeButton in detailPopupCloseButtons)
+        foreach (var detailCloseButton in detailPopupCloseButtons)
         {
-            closeButton.onClick.AddListener(() => shopDetailPopup.SetActive(false));
+            detailCloseButton.onClick.AddListener(() => shopDetailPopup.SetActive(false));
         }
+        closeButton.onClick.AddListener(CloseUI);
     }
 
     private void InitializeShopDetails()

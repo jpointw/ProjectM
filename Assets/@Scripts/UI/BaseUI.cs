@@ -9,7 +9,7 @@ public class BaseUI : MonoBehaviour
 
     private void Awake()
     {
-        canvas ??= gameObject.GetComponent<Canvas>();
+        canvas = gameObject.GetComponent<Canvas>();
     }
 
     public virtual void OpenUI()
