@@ -33,6 +33,8 @@ public class GameSystems : SingletonMonoBase<GameSystems>
     public static MinerSystem MinerSystem =>  Instance?._minerSystem;
     public static EnemySystem EnemySystem =>  Instance?._enemySystem;
     
+    public static GameModelDatas ModelDatas => Instance?.gameModelDatas;
+    
     public void Init()
     {
         _dataSystem.Init();
@@ -44,8 +46,8 @@ public class GameSystems : SingletonMonoBase<GameSystems>
         _mineSystem.Init();
         _minerSystem = FindFirstObjectByType<MinerSystem>();
         _minerSystem.Init();
-        _enemySystem = FindFirstObjectByType<EnemySystem>();
-        _enemySystem.Init();
+        // _enemySystem = FindFirstObjectByType<EnemySystem>();
+        // _enemySystem.Init();
         return true;
     }
 }

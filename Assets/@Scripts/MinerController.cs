@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.Serialization;
 using static Define;
 
@@ -16,12 +17,12 @@ public class MinerController : MonoBehaviour
 
     private Coroutine _miningCoroutine;
 
-    [FormerlySerializedAs("damage")] public int Damage = 0;
+    private int _minerDamage;
 
     public bool IsMining { get; private set; } = false;
     private bool _hasReachedDestination = false;
 
-    void Start()
+    void Awake()
     {
         _followerEntity = GetComponent<FollowerEntity>();
         _minerAnimation = GetComponent<MinerAnimation>();
@@ -33,11 +34,6 @@ public class MinerController : MonoBehaviour
         {
             _hasReachedDestination = true;
             StartMining();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SetTargetMine();
         }
     }
 
@@ -65,9 +61,8 @@ public class MinerController : MonoBehaviour
     {
         while (_targetMine != null && !_targetMine.IsConsumed)
         {
-            Debug.Log("Mining...");
             _minerAnimation?.MiningAnimationStart();
-            _targetMine.MineConsumed(Damage);
+            _targetMine.MineConsumed(_minerDamage);
             if (_targetMine.IsConsumed)
             {
                 FinishMining();
@@ -137,10 +132,10 @@ public class MinerController : MonoBehaviour
                 break;}
     }
 
-    public void ChangeMinerStatus(int damage, float? speed)
+    public void ChangeMinerStatus(int damage, float speed)
     {
-        Damage = damage;
-        if (speed != null) _followerEntity.maxSpeed = (float)speed;
+        _minerDamage = damage;
+        _followerEntity.maxSpeed = speed;
     }
 
     private void OnDestroy()

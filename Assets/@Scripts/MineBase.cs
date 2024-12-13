@@ -11,8 +11,6 @@ public class MineBase : MonoBehaviour
     
     protected bool isConsumed = false;
     protected bool isTargeted = false;
-    
-    
     protected float mineAmount = 100;
     
     protected MineAnimation mineAnimation;
@@ -51,7 +49,22 @@ public class MineBase : MonoBehaviour
     {
         isConsumed = false;
         isTargeted = false;
-        mineAmount = 100;
+
+        switch (mineType)
+        {
+            case MineType.Gold:
+                mineAmount = 500;
+                break;
+            case MineType.Coal:
+                mineAmount = 500;
+                break;
+            case MineType.Iron:
+                mineAmount = 1500;
+                break;
+            case MineType.Diamond:
+                mineAmount = 3000;
+                break;
+        }
     }
     
     

@@ -5,21 +5,23 @@ using static Define;
 [Serializable]
 public class GameData
 {
-    public int gold;
+    public bool isFirstUser = false;
+    
+    public int gold = 10000;
     public int mine = 0;
-    public int greenGem;
-    public int redGem;
+    public int greenGem = 100;
+    public int redGem = 100;
 
-    public int level;
-    public int exp;
+    public int level = 1;
+    public int exp = 0;
     
     public int[] miningToolLevel = new int[MININGTOOL_COUNT];
 
-    public int[] itemAmount;
+    public int[] itemAmount = new int[3];
 
-    public int minerCount = 0;
+    public int minerCount = 1;
     
-    public int currentMiningToolID;
+    public int currentMiningToolID = 0;
     
     public bool BGMOn = true;
     public bool effectSoundOn = true;

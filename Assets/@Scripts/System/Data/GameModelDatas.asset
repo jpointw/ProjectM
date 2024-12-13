@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: GameModelDatas
   m_EditorClassIdentifier: 
   levelUpDatas: []
-  characterInfoDatas: []
+  characterInfoDatas:
+  - CharacterId: 0
+    Damage: 40
+    Speed: 4
   itemInfoDatas:
   - itemId: 0
     icon: {fileID: 0}
