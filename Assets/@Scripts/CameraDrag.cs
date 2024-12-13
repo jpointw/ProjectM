@@ -7,6 +7,8 @@ public class CameraDrag : MonoBehaviour
     public float zoomSpeed = 10.0f;
     public float minZoomZ = -10.0f;
     public float maxZoomZ = 10.0f; 
+    public float minZoomY = 15.0f; // 최소 y값
+    public float maxZoomY = 30.0f; // 최대 y값
     public Vector3 minBounds = new Vector3(-50, -50, -50);
     public Vector3 maxBounds = new Vector3(50, 50, 50);
 
@@ -22,7 +24,6 @@ public class CameraDrag : MonoBehaviour
     void Update()
     {
         HandleDrag();
-        HandleRotation();
         HandleZoom();
     }
 
@@ -74,7 +75,9 @@ public class CameraDrag : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         Vector3 localPosition = mainCamera.transform.localPosition;
 
-        localPosition.z = Mathf.Clamp(localPosition.z + scroll, minZoomZ, maxZoomZ);
+        // localPosition.z = Mathf.Clamp(localPosition.z + scroll, minZoomZ, maxZoomZ);
+        localPosition.y = Mathf.Clamp(localPosition.y - scroll, minZoomY, maxZoomY); // y값 업데이트
+
         mainCamera.transform.localPosition = localPosition;
     }
 }

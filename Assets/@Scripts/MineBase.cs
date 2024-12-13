@@ -36,6 +36,22 @@ public class MineBase : MonoBehaviour
         {
             mineAmount = 0;
             isConsumed = true;
+            
+            switch (mineType)
+            {
+                case MineType.Gold:
+                    GameSystems.Data.UpdateGold(100);
+                    break;
+                case MineType.Coal:
+                    GameSystems.Data.UpdateGold(500);
+                    break;
+                case MineType.Iron:
+                    GameSystems.Data.UpdateGreenGem(1);
+                    break;
+                case MineType.Diamond:
+                    GameSystems.Data.UpdateGreenGem(5);
+                    break;
+            }
             MineSystem.Instance.ReturnMineToPool(this);
         }
     }
