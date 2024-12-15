@@ -20,6 +20,7 @@ public class TitleScene : SceneBase
 
     public void Start()
     {
+        GameSystems.Instance.Init();
         StartShakeAnimation();
         gameStartButton.onClick.AddListener(() => GameSystems.Scene.ChangeScene(SceneType.GameScene));
         GameSystems.Instance.gameModelDatas = gameModelDatas;

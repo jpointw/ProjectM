@@ -46,7 +46,6 @@ public class MinerSystem : MonoBehaviour
         {
             minerController.ChangeMinerStatus(damange, speed);
         }
-        Debug.LogError("이거 혹시 실행되니?");
     }
 
     public void InstantiateAllMiners(int count)
