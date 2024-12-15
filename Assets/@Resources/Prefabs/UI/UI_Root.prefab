@@ -2650,7 +2650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   mainUI: {fileID: 0}
-  levelText: {fileID: 0}
+  levelText: {fileID: 9039581924551629861}
   statSliders:
   - {fileID: 2886805503429274437}
   - {fileID: 7475011246377182470}
@@ -2666,7 +2666,10 @@ MonoBehaviour:
   - {fileID: 1050880722529216824}
   - {fileID: 3397224284087475577}
   currentMinerText: {fileID: 9070085910327225649}
-  itemIcons: []
+  itemIcons:
+  - {fileID: 21300000, guid: 3c2b39519a2a5114180b31e2dffed6c0, type: 3}
+  - {fileID: 21300000, guid: fc05d8bad154acc48b29a0bbfd55d924, type: 3}
+  - {fileID: 21300000, guid: 9b1c00443667d034f997dc89cd7a2880, type: 3}
   equipPopupDetail: {fileID: 4604049828896357965}
   detailPopupPurchaseButton: {fileID: 2224440816014291406}
   detailPopupEquipButton: {fileID: 51742723831467513}
@@ -3562,7 +3565,7 @@ MonoBehaviour:
   itemSliders:
   - {fileID: 7208866092268585331}
   - {fileID: 6434385518790210547}
-  itemChecks: 000000
+  itemChecks: 0000
 --- !u!1 &1272322435841677099
 GameObject:
   m_ObjectHideFlags: 0
@@ -11262,8 +11265,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -15,7 +15,7 @@ public class MainUI : MonoBehaviour
     [Header("Slider")]
     public Canvas sliderCanvas;
     public Slider[] itemSliders;
-    public bool[] itemChecks = new []{false, false, false};
+    public bool[] itemChecks = new []{false, false};
     
     private int activeIndex = -1;
 
@@ -89,6 +89,10 @@ public class MainUI : MonoBehaviour
     public void SliderCanvasEnable(bool toggle)
     {
         sliderCanvas.enabled = toggle;
+        for (int i = 0; i < itemChecks.Length; i++)
+        {
+            itemSliders[i].gameObject.SetActive(itemChecks[i]);
+        }
     }
 
     public void ActiveItemSLider(int index)
@@ -106,6 +110,7 @@ public class MainUI : MonoBehaviour
                 GameSystems.MinerSystem.HandleStatusChanged(MinerExtensions.GetDamage(),MinerExtensions.GetSpeed() * 2);
                 break;
         }
+        
         DecreaseSlider(itemSliders[index], index).Forget();
     }
 

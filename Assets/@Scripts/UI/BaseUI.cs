@@ -23,6 +23,7 @@ public class BaseUI : MonoBehaviour
     public virtual void CloseUI()
     {
         IsOpen = false;
+        mainUI.SliderCanvasEnable(true);
         canvas.enabled = false;
     }
 }

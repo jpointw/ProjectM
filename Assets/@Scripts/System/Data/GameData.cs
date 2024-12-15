@@ -7,7 +7,7 @@ public class GameData
 {
     public bool isFirstUser = false;
     
-    public int gold = 10000;
+    public int gold = 10000000;
     public int mine = 0;
     public int greenGem = 100;
     public int redGem = 100;
