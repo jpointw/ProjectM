@@ -15,21 +15,11 @@ public class SceneBase : MonoBehaviour
 
     protected virtual bool Init()
     {
-        if (_init)
-            return false;
-
-        _init = true;
-        GameSystems.Instance.Init();
-
-        // GameObject go = GameObject.Find("EventSystem");
-        // if (go == null)
-        // {
-        //     GameSystems.Resource.Instantiate("EventSystem", null, (go) =>
-        //     {
-        //         go.name = "@EventSystem";
-        //     });
-        // }
-
+        // if (_init)
+        //     return false;
+        //
+        // _init = true;
+        // GameSystems.Instance.Init();
         return true;
     }
 

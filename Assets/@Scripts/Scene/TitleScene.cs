@@ -11,6 +11,8 @@ public class TitleScene : SceneBase
     
     public Image gameLogoImage;
     public Button gameStartButton;
+    
+    public GameModelDatas gameModelDatas;
     protected override bool Init()
     {
         return base.Init();
@@ -20,6 +22,7 @@ public class TitleScene : SceneBase
     {
         StartShakeAnimation();
         gameStartButton.onClick.AddListener(() => GameSystems.Scene.ChangeScene(SceneType.GameScene));
+        GameSystems.Instance.gameModelDatas = gameModelDatas;
     }
 
     private void StartShakeAnimation()

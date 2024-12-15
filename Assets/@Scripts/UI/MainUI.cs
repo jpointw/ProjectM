@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,21 +9,25 @@ public class MainUI : MonoBehaviour
     public TMP_Text greenGemText;
     public TMP_Text redGemText;
 
-    public BaseUI[] BaseUis;      // 관리할 BaseUI 배열
-    public Button[] bottomButtons; // 하단 버튼 배열
+    public BaseUI[] BaseUis;
+    public Button[] bottomButtons;
 
-    private int activeIndex = -1; // 현재 활성화된 UI 인덱스 (-1은 비활성 상태)
+    [Header("Slider")]
+    public Canvas sliderCanvas;
+    public Slider[] itemSliders;
+    
+    private int activeIndex = -1;
 
     void Start()
     {
-        // 버튼 클릭 이벤트 연결
+       
         for (int i = 0; i < bottomButtons.Length; i++)
         {
-            int index = i; // 로컬 변수로 캡처
+            int index = i;
             bottomButtons[i].onClick.AddListener(() => OnBottomButtonClick(index));
         }
 
-        // 자원 업데이트 이벤트 연결
+        
         GameSystems.Data.OnGoldUpdated += OnHandleGoldChanged;
         GameSystems.Data.OnGreenGemUpdated += OnHandleGreenGemChanged;
         GameSystems.Data.OnRedGemUpdated += OnHandleRedGemChanged;
@@ -31,6 +36,8 @@ public class MainUI : MonoBehaviour
         {
             baseUi.CloseUI();
         }
+        
+        SliderCanvasEnable(false);
     }
 
     public void OnHandleGoldChanged(int goldValue)
@@ -48,30 +55,59 @@ public class MainUI : MonoBehaviour
         redGemText.text = redGemValue.ToString();
     }
 
-    // 하단 버튼 클릭 시 UI 활성화/비활성화
     public void OnBottomButtonClick(int index)
     {
         if (activeIndex == index)
         {
-            // 현재 활성화된 UI를 다시 클릭한 경우 비활성화
+            SliderCanvasEnable(false);
             BaseUis[index].CloseUI();
             activeIndex = -1;
         }
         else
         {
-            // 모든 UI를 닫고 선택된 UI만 열기
             for (int i = 0; i < BaseUis.Length; i++)
             {
                 if (i == index)
                 {
-                    BaseUis[i].OpenUI(); // 선택된 UI 열기
+                    BaseUis[i].OpenUI();
                 }
                 else
                 {
-                    BaseUis[i].CloseUI(); // 나머지 UI 닫기
+                    BaseUis[i].CloseUI();
                 }
             }
-            activeIndex = index; // 활성화된 UI의 인덱스 업데이트
+            activeIndex = index;
         }
+    }
+
+    public void SliderCanvasEnable(bool toggle)
+    {
+        sliderCanvas.enabled = toggle;
+    }
+
+    public void ActiveItemSLider(int index)
+    {
+        itemSliders[index].value = 1f;
+        itemSliders[index].gameObject.SetActive(true);
+
+        DecreaseSlider(itemSliders[index]).Forget();
+    }
+
+    private async UniTaskVoid DecreaseSlider(Slider slider)
+    {
+        float duration = 60f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            slider.value = Mathf.Lerp(1f, 0f, elapsedTime / duration);
+
+            elapsedTime += Time.deltaTime;
+
+            await UniTask.Yield(PlayerLoopTiming.Update);
+        }
+
+        slider.value = 0f;
+        slider.gameObject.SetActive(false);
     }
 }

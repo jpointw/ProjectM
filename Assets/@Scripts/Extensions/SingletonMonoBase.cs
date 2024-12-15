@@ -26,9 +26,7 @@ public abstract class SingletonMonoBase<T> : MonoBehaviour where T : Component
         if (_instance == null)
         {
             _instance = this as T;
-
-            transform.SetParent(null);
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
