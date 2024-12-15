@@ -17,7 +17,7 @@ public static class MinerExtensions
         return totalDamage;
     }
 
-    public static float GetSpped()
+    public static float GetSpeed()
     {
         var modelDatas = GameSystems.ModelDatas;
         var saveData = GameSystems.Data.SaveData;

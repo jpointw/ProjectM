@@ -56,7 +56,7 @@ public class MinerSystem : MonoBehaviour
             MinerController miner = Instantiate(minerControllerObj);
             miners.Add(miner);
             int a = MinerExtensions.GetDamage();
-            miner.ChangeMinerStatus(MinerExtensions.GetDamage(), MinerExtensions.GetSpped());
+            miner.ChangeMinerStatus(MinerExtensions.GetDamage(), MinerExtensions.GetSpeed());
             miner.SetTargetMine();
 
         }
@@ -66,7 +66,7 @@ public class MinerSystem : MonoBehaviour
     {
         MinerController miner = Instantiate(minerControllerObj);
         miners.Add(miner);
-        miner.ChangeMinerStatus(MinerExtensions.GetDamage(), MinerExtensions.GetSpped());
+        miner.ChangeMinerStatus(MinerExtensions.GetDamage(), MinerExtensions.GetSpeed());
         miner.SetTargetMine();
     }
 

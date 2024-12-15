@@ -43,6 +43,11 @@ public class ItemUI : BaseUI
             itemButtons[i].interactable = GameSystems.Data.SaveData.itemAmount[i] > 0;
             itemAmountTexts[i].text = $"x {GameSystems.Data.SaveData.itemAmount[i]}";
         }
+        for (int i = 0; i < mainUI.itemChecks.Length; i++)
+        {
+             itemButtons[i].interactable = !mainUI.itemChecks[i] && GameSystems.Data.SaveData.itemAmount[i] > 0;
+            itemAmountTexts[i].text = $"x {GameSystems.Data.SaveData.itemAmount[i]}";
+        }
         base.OpenUI();
     }
 
@@ -65,9 +70,7 @@ public class ItemUI : BaseUI
             itemButtons[0].interactable = false;
         }
 
-        var damage = MinerExtensions.GetDamage();
-        var speed = MinerExtensions.GetSpped();
-        GameSystems.MinerSystem.OnStatusChanged.Invoke(damage * 2,speed);
+        mainUI.ActiveItemSLider(0);
     }
     public void OnClickedItem2Button()
     {
@@ -82,9 +85,8 @@ public class ItemUI : BaseUI
             itemButtons[1].interactable = false;
         }
         
-        var damage = MinerExtensions.GetDamage();
-        var speed = MinerExtensions.GetSpped();
-        GameSystems.MinerSystem.OnStatusChanged.Invoke(damage,speed * 2);
+        mainUI.ActiveItemSLider(1);
+
     }
     
     public void OnClickedItem3Button()
