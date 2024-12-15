@@ -25,6 +25,7 @@ public class EquipmentUI : BaseUI
 
     public Button characterAddButton;
     public Button[] itemButtons;
+    public TMP_Text[] itemLvTexts;
 
     public TMP_Text currentMinerText;
     
@@ -66,12 +67,18 @@ public class EquipmentUI : BaseUI
         {
             characterAddButton.enabled = false;
         }
+
+        for (int i = 0; i < itemLvTexts.Length; i++)
+        {
+            itemLvTexts[i].text = 
+                $"Current LV : {GameSystems.Data.SaveData.miningToolLevel[i].ToString()}";
+        }
     }
 
     public override void OpenUI()
     {
         base.OpenUI();
-        currentMinerText.text = GameSystems.Data.SaveData.minerCount.ToString();
+        currentMinerText.text = $"Cureent Miner : {GameSystems.Data.SaveData.minerCount.ToString()}/10";
         levelText.text = GameSystems.Data.SaveData.level.ToString();
         statSliders[0].value = Mathf.Clamp01(MinerExtensions.GetDamage() / 2000);
         statSliders[1].value = Mathf.Clamp01(MinerExtensions.GetSpeed() / 100);
@@ -128,7 +135,7 @@ public class EquipmentUI : BaseUI
                 GameSystems.Data.SaveData.minerCount++;
                 GameSystems.Data.OnGoldUpdated(-10000);
                 GameSystems.MinerSystem.OnMinerAdded.Invoke();
-                currentMinerText.text = GameSystems.Data.SaveData.minerCount.ToString();
+                currentMinerText.text = $"Cureent Miner : {GameSystems.Data.SaveData.minerCount.ToString()}/10";
             }
         });
     }

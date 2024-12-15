@@ -28,6 +28,11 @@ public class MainUI : MonoBehaviour
             bottomButtons[i].onClick.AddListener(() => OnBottomButtonClick(index));
         }
 
+        goldText.text = GameSystems.Data.SaveData.gold.ToString();
+        greenGemText.text = GameSystems.Data.SaveData.greenGem.ToString();
+        redGemText.text = GameSystems.Data.SaveData.redGem.ToString();
+
+
         
         GameSystems.Data.OnGoldUpdated += OnHandleGoldChanged;
         GameSystems.Data.OnGreenGemUpdated += OnHandleGreenGemChanged;

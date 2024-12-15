@@ -31,25 +31,6 @@ public class MineSystem : MonoBehaviour
             Instance = this;
         }
     }
-
-    // void Start()
-    // {
-    //     minePools = new Dictionary<MineType, ObjectPool<MineBase>>()
-    //     {
-    //         { MineType.Gold, CreateMinePool(goldMinePrefab, 5, 10) },
-    //         { MineType.Coal, CreateMinePool(coalMinePrefab, 5, 10) },
-    //         { MineType.Iron, CreateMinePool(ironMinePrefab, 5, 10) },
-    //         { MineType.Diamond, CreateMinePool(diamondMinePrefab, 5, 10) }
-    //     };
-    //
-    //     for (int i = 0; i < MaxMineAmount; i++)
-    //     {
-    //         RequestNewMine(plane.transform.position, 5);
-    //     }
-    //     
-    //     MonitorMinesAsync().Forget();
-    // }
-
     public void Init()
     {
         minePools = new Dictionary<MineType, ObjectPool<MineBase>>()
@@ -67,21 +48,7 @@ public class MineSystem : MonoBehaviour
         
         MonitorMinesAsync().Forget();
     }
-
-    // private void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.A))
-    //     {
-    //         RequestNewMine(plane.transform.position, 5);
-    //     }
-    //
-    //     if (Input.GetKeyDown(KeyCode.S))
-    //     {
-    //         activeMines[Random.Range(0, activeMines.Count)].MineConsumed(100f);
-    //     }
-    // }
-    
-    private async UniTaskVoid MonitorMinesAsync(float delay = 3f)
+    private async UniTaskVoid MonitorMinesAsync(float delay = 1f)
     {
         while (true)
         {

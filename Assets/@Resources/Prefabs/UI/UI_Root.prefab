@@ -2650,7 +2650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   mainUI: {fileID: 0}
-  level: {fileID: 9039581924551629861}
+  levelText: {fileID: 0}
   statSliders:
   - {fileID: 2886805503429274437}
   - {fileID: 7475011246377182470}
@@ -2661,6 +2661,10 @@ MonoBehaviour:
   - {fileID: 6354510794408463235}
   - {fileID: 5128120091030930106}
   - {fileID: 5198084344188291286}
+  itemLvTexts:
+  - {fileID: 4286376088820206745}
+  - {fileID: 1050880722529216824}
+  - {fileID: 3397224284087475577}
   currentMinerText: {fileID: 9070085910327225649}
   itemIcons: []
   equipPopupDetail: {fileID: 4604049828896357965}
@@ -2669,8 +2673,6 @@ MonoBehaviour:
   detailPopupCloseButtons:
   - {fileID: 5687822341222140526}
   - {fileID: 4521334044183099711}
-  itemImage: {fileID: 4223339697565617825}
-  payTypeImage: {fileID: 7132744799968149460}
   shopDetailPopupText: {fileID: 7957753276559413113}
   shopDetailPriceText: {fileID: 8314789594330913221}
   itemDamageText: {fileID: 1813990894049938477}
@@ -3560,6 +3562,7 @@ MonoBehaviour:
   itemSliders:
   - {fileID: 7208866092268585331}
   - {fileID: 6434385518790210547}
+  itemChecks: 000000
 --- !u!1 &1272322435841677099
 GameObject:
   m_ObjectHideFlags: 0
